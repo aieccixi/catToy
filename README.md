@@ -1,6 +1,9 @@
 # catToy
-A cat toy using Raspberry Pi, Pi-Camera, lasers, and servos.
+A cat toy using Raspberry Pi, Pi-Camera, lasers, servos, and NODE.JS!
 
+Ultimate goal is to control a laser pointer over a streamed video web server.
+
+nodetest dir requires socket.io to run
 
 Parts of code being used from:
 https://www.w3schools.com/nodejs/nodejs_raspberrypi_webserver_websocket.asp
