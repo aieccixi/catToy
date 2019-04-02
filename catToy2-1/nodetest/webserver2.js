@@ -1,6 +1,7 @@
 var http = require('http').createServer(handler); //require http server, and create server with function handler()
 var fs = require('fs'); //require filesystem module
 var io = require('socket.io')(http); //require socket.io module and pass the http object (server)
+
 //var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 //var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
 var led = 0;
@@ -19,14 +20,6 @@ function handler (req, res) { //create server
 	});
 };
 
-/*
-NEEDS WORK!!!!!
-
-spacebar needs to be detected first and then right gets detected
-then right and space send twice maybe something to do with keyDown/UpHandlers
-
-
-*/
 io.sockets.on('connection', function (socket) {// WebSocket Connection
 	var spacePressed = false;
 	var rightPressed = false;
