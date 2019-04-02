@@ -2,6 +2,34 @@ var http = require('http').createServer(handler); //require http server, and cre
 var fs = require('fs'); //require filesystem module
 var io = require('socket.io')(http); //require socket.io module and pass the http object (server)
 
+// camera stuff
+const express = require('express');
+const raspividStream = require('raspivid-stream');
+
+const app = express();
+const wss = require('express-ws')(app);
+
+app.ws('/video-stream', (ws, req) => {
+	console.log('client connected');
+
+	ws.send(JSON.stringify({
+		action: 'init',
+		width: '960',
+		height:'540'
+	}));
+
+	var videoStream = raspividStream({ rotation: 180});
+
+	videoStream.on('data', (data) => {
+		ws.send(data, { binary: true }, (error) => {if (error) console.error(error); });
+	});
+
+	ws.on('close', () => {
+		console.log('Client left');
+		videoStream.removeAllListeners('data');
+	});
+});
+
 //var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 //var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
 var led = 0;
