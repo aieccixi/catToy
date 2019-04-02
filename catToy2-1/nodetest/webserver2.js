@@ -17,7 +17,7 @@ function handler (req, res) { //create server
 		res.write(data); //write data from index.html
 		return res.end();
 	});
-}
+};
 
 /*
 NEEDS WORK!!!!!
@@ -28,24 +28,39 @@ then right and space send twice maybe something to do with keyDown/UpHandlers
 
 */
 io.sockets.on('connection', function (socket) {// WebSocket Connection
-	var spacePressed = false; //static variable for current status
+	var spacePressed = false;
 	var rightPressed = false;
-	socket.on('spaceBar', function(data) { //get light switch status from client
+	var leftPressed = false;
+	var upPressed = false;
+	var downPressed = false;
+
+	socket.on('spaceBar', function(data) {
 		spacePressed = data;
-		console.log('This is server side');
-		console.log(spacePressed);
-		if (spacePressed) { //only change LED if status has changed
+		console.log('spacePressed');
+		/*if (spacePressed) {
 			led = 1;
 			//LED.writeSync(lightvalue); //turn LED on or off
-		}
+		};*/
+	});
+
 	socket.on('right', function(data) {
 		rightPressed = data;
-		if (rightPressed){
-			console.log('This is server side RIGHT');
-			console.log(rightPressed);
-		}
-		});
+		console.log('rightPressed');
+	});
 
+	socket.on('left', function(data) {
+		leftPressed = data;
+		console.log('leftPressed');
+	});
+
+	socket.on('up', function(data) {
+		upPressed = data;
+		console.log('upPressed');
+	});
+
+	socket.on('down', function(data) {
+		downPressed = data;
+		console.log('downPressed');
 	});
 });
 process.on('SIGINT', function () { //on ctrl+c
@@ -53,4 +68,4 @@ process.on('SIGINT', function () { //on ctrl+c
 	//LED.unexport(); // Unexport LED GPIO to free resources
 	//pushButton.unexport(); // Unexport Button GPIO to free resources
 	process.exit(); //exit completely
-})
+});

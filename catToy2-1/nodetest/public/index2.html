@@ -24,7 +24,6 @@ window.addEventListener("load", function(){ //when page loads
 			spacePressed = true;
 			socket.emit("spaceBar", spacePressed);
 		}
-		// check socket.emit is labeled correctly
 		else if(e.key == "Right" || e.key == "ArrowRight") {
 	        rightPressed = true;
 			socket.emit("right", rightPressed);
@@ -47,7 +46,6 @@ window.addEventListener("load", function(){ //when page loads
 			spacePressed = false;
 			socket.emit("spaceBar", spacePressed);
 		}
-		// check socket.emit is labeled correctly
 	    else if(e.key == "Right" || e.key == "ArrowRight") {
 	        rightPressed = false;
 			socket.emit("right", rightPressed);
