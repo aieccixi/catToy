@@ -1,0 +1,12 @@
+{
+  "name": "catToy",
+  "version": "2.3.0",
+  "description": "ready for servos",
+  "dependencies": {
+    "adafruit-pca9685": "^0.1.4",
+    "express": "^4.16.4",
+    "express-ws": "^4.0.0",
+    "raspivid-stream": "^0.2.1",
+    "socket.io": "^2.2.0"
+  }
+}

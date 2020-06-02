@@ -1,0 +1,24 @@
+<html>
+	<body>
+		<script type="text/javascript" src="https://rawgit.com/131/h264-live-player/master/vendor/dist/http-live-player.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="js/keyHandler.js"></script>
+		<script>
+			var socket = io();
+			socket.on('news', function(data) {
+				console.log(data);
+				socket.emit('my other event', {my: 'data'});
+			});
+			
+			var canvas = document.createElement("canvas");
+			document.body.appendChild(canvas);
+
+			var wsavc = new WSAvcPlayer(canvas, "webgl");
+
+			var protocol = window.location.protocol === "https:" ? "wss:" : "ws:"
+			var uri = "ws://192.168.1.9:80/video-stream"
+			//wsavc.connect(protocol + "//" + window.location.host + '/video-stream');
+			wsavc.connect(uri);			
+		</script>
+	</body>
+</html>
